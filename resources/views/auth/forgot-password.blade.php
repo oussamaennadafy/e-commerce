@@ -42,7 +42,7 @@
                                 <div class="wsus__login_input">
                                     <i class="fal fa-envelope"></i>
                                     <input value="{{ old('email') }}" name="email" type="email"
-                                        placeholder="Your Email" required>
+                                        placeholder="Your Email">
                                 </div>
                                 <button class="common_btn" type="submit">send</button>
                             </form>
