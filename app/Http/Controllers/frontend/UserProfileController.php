@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class UserDashboardController extends Controller
+class UserProfileController extends Controller
 {
     //
     public function index(Request $request): View
     {
-        return view('frontend.dashboard.dashboard', compact('request'));
+        // dd($request);
+        return view('frontend.dashboard.profile', compact('request'));
     }
 }
