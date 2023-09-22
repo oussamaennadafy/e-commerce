@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class VendorController extends Controller
 {
     //
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        return view('vendor.dashboard.dashboard');
+        return view('vendor.dashboard.dashboard', compact('request'));
     }
 }

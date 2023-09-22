@@ -33,7 +33,7 @@
     <!--=============================
         DASHBOARD MENU START
     ==============================-->
-    @include('frontend.dashboard.layouts.menu')
+    @include('vendor.dashboard.layouts.menu')
     <!--=============================
         DASHBOARD MENU END
     ==============================-->
@@ -45,7 +45,7 @@
     <section id="wsus__dashboard">
         <div class="container-fluid">
 
-            @include('frontend.dashboard.layouts.aside')
+            @include('vendor.dashboard.layouts.aside')
 
             @yield('content')
         </div>

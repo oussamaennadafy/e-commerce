@@ -3,21 +3,23 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
-class ProfileController extends Controller
+class VendorProfileController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request): View
     {
-        return view('admin.profile.index');
+        # code...
+        return view('vendor.dashboard.profile', compact('request'));
     }
 
-    //
     public function updateProfile(Request $request)
     {
+        # code...
         $request->validate([
             "name" => ['required', 'max:50', 'min:5'],
             "email" => ['required', 'email', 'unique:users,email,' . Auth::user()->id],
@@ -25,8 +27,6 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
-
-
 
         if ($request->hasFile('image')) {
             //remove the old image

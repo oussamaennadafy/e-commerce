@@ -16,6 +16,7 @@ class UserProfileController extends Controller
         // dd($request);
         return view('frontend.dashboard.profile', compact('request'));
     }
+
     public function updateProfile(Request $request)
     {
         # code...
@@ -50,6 +51,7 @@ class UserProfileController extends Controller
 
         return redirect()->back();
     }
+
     public function updatePassword(Request $request)
     {
         // dd($request->all());
