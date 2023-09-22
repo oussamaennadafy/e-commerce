@@ -42,7 +42,9 @@
                             </div>
                         </form>
                         <div class="wsus__dash_pass_change mt-2">
-                            <form method="POST" action="{{ route('user.profile.password.update') }}" class="row">
+                            <h4>reset password</h4>
+
+                            <form method="POST" action="{{ route('user.profile.update.password') }}" class="row">
                                 @csrf
                                 @method('patch')
                                 <div class="col-xl-4 col-md-6">
