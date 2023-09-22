@@ -33,4 +33,6 @@ Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login'
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::patch('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::patch('profile/password/update', [UserProfileController::class, 'updatePassword'])->name('profile.password.update');
 });
