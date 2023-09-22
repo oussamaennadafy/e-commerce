@@ -14,8 +14,8 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Table</h2>
-            <p class="section-lead">Example of some Bootstrap table components.</p>
+            <h2 class="section-title">Hi there!</h2>
+            <p class="section-lead">Here you can create a brand new slider</p>
 
 
             <div class="row">
@@ -26,36 +26,38 @@
 
                         </div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form enctype="multipart/form-data" action="{{ route('admin.slider.store') }}" method="POST">
+                                @csrf
                                 <div class="form-group">
                                     <label>Banner</label>
-                                    <input name="" type="file" class="form-control">
+                                    <input value="{{ old('banner') }}" name="banner" type="file" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Type</label>
-                                    <input name="type" type="text" class="form-control">
+                                    <input value="{{ old('type') }}" name="type" type="text" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input name="title" type="text" class="form-control">
+                                    <input value="{{ old('title') }}" name="title" type="text" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Starting Price</label>
-                                    <input name="price" type="text" class="form-control">
+                                    <input value="{{ old('starting_price') }}" name="starting_price" type="number"
+                                        class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Button Url</label>
-                                    <input name="button_url" type="text" class="form-control">
+                                    <input value="{{ old('btn_url') }}" name="btn_url" type="url" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Serial</label>
-                                    <input name="button_url" type="text" class="form-control">
+                                    <input value="{{ old('serial') }}" name="serial" type="number" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputState">Status</label>
-                                    <select id="inputState" class="form-control">
-                                        <option>active</option>
-                                        <option>inactive</option>
+                                    <select name="status" id="inputState" class="form-control">
+                                        <option value="1">active</option>
+                                        <option value="0">inactive</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Create</button>

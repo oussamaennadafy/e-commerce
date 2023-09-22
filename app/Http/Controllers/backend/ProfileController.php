@@ -26,8 +26,6 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-
-
         if ($request->hasFile('image')) {
             //remove the old image
             if (File::exists(public_path($user->image))) {
