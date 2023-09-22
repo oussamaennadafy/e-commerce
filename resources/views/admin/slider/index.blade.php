@@ -24,7 +24,7 @@
                         <div class="card-header">
                             <h4>Simple Table</h4>
                             <div class="card-header-action">
-                                <a href="" class="btn btn-primary">create New</a>
+                                <a href="{{ route('admin.slider.create') }}" class="btn btn-primary">create New</a>
                             </div>
                         </div>
                         <div class="card-body">
