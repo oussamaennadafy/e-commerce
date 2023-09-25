@@ -14,6 +14,6 @@ Route::post('profile/update', [ProfileController::class, 'updateProfile'])->name
 
 Route::post('profile/update/password', [ProfileController::class, 'updatePassword'])->name('password.update');
 
-// Slider route
 
+// Slider route
 Route::resource('slider', SliderController::class);

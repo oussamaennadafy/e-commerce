@@ -30,8 +30,9 @@
                                 method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <label>Banner</label>
-                                <img class="w-25" src="{{ asset($slider->banner) }}" alt="">
+                                <label class="mb-3">banner preview</label>
+                                <br>
+                                <img class="w-25 mb-3" src="{{ asset($slider->banner) }}">
                                 <div class="form-group">
                                     <label>Banner</label>
                                     <input value="{{ old('banner') }}" name="banner" type="file" class="form-control">

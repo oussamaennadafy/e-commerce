@@ -15,7 +15,7 @@
 
         <div class="section-body">
             <h2 class="section-title">Hi there!</h2>
-            <p class="section-lead">here you can see all the sliders</p>
+            <p class="section-lead">here is all slider that is shown to the client</p>
 
 
             <div class="row">
@@ -24,7 +24,11 @@
                         <div class="card-header">
                             <h4>Sliders</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.slider.create') }}" class="btn btn-primary">create New</a>
+                                <a href="{{ route('admin.slider.create') }}"
+                                    class="btn btn-primary d-flex align-items-center">
+                                    <i class="fas fa-plus mr-2"></i>
+                                    <span class="d-inline-block">create New</span>
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -64,20 +68,25 @@
                                                             <td>{{ $slider->serial }}</td>
                                                             <td>
                                                                 <div
-                                                                    class="badge {{ $slider->status ? 'badge-success' : 'badge-warning' }}">
+                                                                    class="badge {{ $slider->status ? 'badge-success' : 'badge-danger' }}">
                                                                     {{ $slider->status ? 'active' : 'inactive' }}
                                                                 </div>
                                                             </td>
                                                             <td class="d-flex">
                                                                 <a href="{{ route('admin.slider.edit', $slider->id) }}"
                                                                     class="btn btn-primary mr-1">Edit</a>
-                                                                <form
+                                                                {{-- <form
                                                                     action="{{ route('admin.slider.destroy', $slider->id) }}"
                                                                     method="post">
                                                                     @method('DELETE')
                                                                     @csrf
-                                                                    <button class="btn btn-danger">Delete</button>
-                                                                </form>
+                                                                    <button
+                                                                        class="btn delete-item btn-danger">Delete</button>
+                                                                </form> --}}
+                                                                <a href="{{ route('admin.slider.destroy', $slider->id) }}"
+                                                                    class="delete-item btn btn-danger">
+                                                                    delete
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
