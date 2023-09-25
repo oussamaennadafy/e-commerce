@@ -21,8 +21,6 @@ trait ImageUploadTrait
    $imageName = 'media_' . uniqid() . '.' . $ext;
    $image->move(public_path($path), $imageName);
 
-   $path = "/uploads/" . $imageName;
-
    return $path . '/' . $imageName;
   }
  }

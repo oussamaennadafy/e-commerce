@@ -17,7 +17,8 @@ class SliderController extends Controller
     public function index(): View
     {
         //
-        return view('admin.slider.index');
+        $sliders = Slider::paginate(2);
+        return view('admin.slider.index', compact('sliders'));
     }
 
     /**
@@ -76,9 +77,11 @@ class SliderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
         //
+        $slider = Slider::find($id);
+        return view('admin.slider.edit', compact('slider'));
     }
 
     /**
@@ -95,5 +98,8 @@ class SliderController extends Controller
     public function destroy(string $id)
     {
         //
+        Slider::find($id)->delete();
+
+        return redirect()->back();
     }
 }

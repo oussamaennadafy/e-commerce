@@ -22,13 +22,87 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Simple Table</h4>
+                            <h4>Sliders</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.slider.create') }}" class="btn btn-primary">create New</a>
                             </div>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $dataTable->table() }} --}}
+                            <div class="table-responsive">
+                                <div id="table-1_wrapper"
+                                    class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-striped dataTable no-footer" id="table-1">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th>Banner</th>
+                                                        <th>Type</th>
+                                                        <th>Title</th>
+                                                        <th>price</th>
+                                                        <th>button url</th>
+                                                        <th>serial</th>
+                                                        <th>status</th>
+                                                        <th>action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($sliders as $slider)
+                                                        <tr>
+                                                            <td style="max-width: 100px;">
+                                                                <img class="w-100" src="{{ asset($slider->banner) }}">
+                                                            </td>
+                                                            <td>{{ $slider->type }}</td>
+                                                            <td>{{ $slider->title }}</td>
+                                                            <td>{{ $slider->starting_price }}</td>
+                                                            <td>
+                                                                <a target="_blank" href="{{ $slider->btn_url }}">
+                                                                    {{ $slider->btn_url }}
+                                                                </a>
+                                                            </td>
+                                                            <td>{{ $slider->serial }}</td>
+                                                            <td>
+                                                                <div
+                                                                    class="badge {{ $slider->status ? 'badge-success' : 'badge-warning' }}">
+                                                                    {{ $slider->status ? 'active' : 'inactive' }}
+                                                                </div>
+                                                            </td>
+                                                            <td class="d-flex">
+                                                                <a href="{{ route('admin.slider.edit', $slider->id) }}"
+                                                                    class="btn btn-primary mr-1">Edit</a>
+                                                                <form
+                                                                    action="{{ route('admin.slider.destroy', $slider->id) }}"
+                                                                    method="post">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <button class="btn btn-danger">Delete</button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    {{-- <tr>
+                                                        <td class="sorting_1">
+                                                            4
+                                                        </td>
+                                                        <td class="">Input data</td>
+                                                        <td class="">Input data</td>
+                                                        <td class="">Input data</td>
+                                                        <td>2018-01-16</td>
+                                                        <td>2018-01-16</td>
+                                                        <td>2018-01-16</td>
+                                                        <td>
+                                                            <div class="badge badge-success">Completed</div>
+                                                        </td>
+                                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                                                    </tr> --}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {{ $sliders->links() }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
