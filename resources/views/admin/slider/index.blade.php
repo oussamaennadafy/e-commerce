@@ -25,7 +25,7 @@
                             <h4>Sliders</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.slider.create') }}"
-                                    class="btn btn-primary d-flex align-items-center">
+                                    class="btn btn-primary d-flex align-items-center justify-content-center">
                                     <i class="fas fa-plus mr-2"></i>
                                     <span class="d-inline-block">create New</span>
                                 </a>
@@ -38,7 +38,8 @@
 
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <table class="table table-striped dataTable no-footer" id="table-1">
+                                            <table class="table table-striped dataTable no-footer text-nowrap"
+                                                id="table-1">
                                                 <thead>
                                                     <tr role="row">
                                                         <th>Banner</th>

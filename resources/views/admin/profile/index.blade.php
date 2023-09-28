@@ -28,8 +28,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div>
-                                        <img alt="image" src="{{ asset(Auth::user()->image) }}"
-                                            class="rounded-circle profile-widget-picture img-thumbnail w-25 mb-4">
+                                        <img width="200" height="200" alt="image"
+                                            src="{{ asset(Auth::user()->image) }}"
+                                            class="rounded-circle profile-widget-picture img-thumbnail mb-4">
                                     </div>
                                     <div class="form-group col-12">
                                         <label>image</label>
