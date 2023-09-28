@@ -29,7 +29,7 @@
                                 <div class="row">
                                     <div>
                                         <img width="200" height="200" alt="image"
-                                            src="{{ asset(Auth::user()->image) }}"
+                                            src="{{ asset(Auth::user()->image ? Auth::user()->image : 'backend/assets/img/avatar/avatar-1.png') }}"
                                             class="rounded-circle profile-widget-picture img-thumbnail mb-4">
                                     </div>
                                     <div class="form-group col-12">

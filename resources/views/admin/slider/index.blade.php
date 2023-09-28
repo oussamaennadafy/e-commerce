@@ -33,8 +33,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <div id="table-1_wrapper"
-                                    class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                                <div id="table-1_wrapper" class="container-fluid dt-bootstrap4 no-footer">
 
                                     <div class="row">
                                         <div class="col-sm-12">

@@ -102,51 +102,53 @@
 
     {{-- dynamic delete alert  --}}
     <script>
-        document.querySelector('.delete-item')?.addEventListener('click', function(event) {
-            event.preventDefault();
+        document.querySelectorAll('.delete-item').forEach((el) => {
+            el.addEventListener('click', function(event) {
+                event.preventDefault();
 
-            //
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#6777ef',
-                cancelButtonColor: '#fc544b',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
+                //
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#6777ef',
+                    cancelButtonColor: '#fc544b',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
 
-                    const url = this.href;
+                        const url = this.href;
 
-                    fetch(url, {
-                            method: "DELETE",
-                            headers: {
-                                'X-CSRF-TOKEN': "{{ csrf_token() }}",
-                            },
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data);
-                            if (data.status === "success") {
-                                Swal.fire(
-                                    'Deleted!',
-                                    data.message,
-                                    'success'
-                                )
-                                window.location.reload();
-                            } else if (data.status === "error") {
-                                Swal.fire(
-                                    "can't delete",
-                                    data.message,
-                                    'error'
-                                )
-                            }
-                        })
-                        .catch(err => console.log(err))
-                }
-            })
-        });
+                        fetch(url, {
+                                method: "DELETE",
+                                headers: {
+                                    'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data);
+                                if (data.status === "success") {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        data.message,
+                                        'success'
+                                    )
+                                    window.location.reload();
+                                } else if (data.status === "error") {
+                                    Swal.fire(
+                                        "can't delete",
+                                        data.message,
+                                        'error'
+                                    )
+                                }
+                            })
+                            .catch(err => console.log(err))
+                    }
+                })
+            });
+        })
     </script>
 </body>
 

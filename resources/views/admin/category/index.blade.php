@@ -32,51 +32,42 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            {{-- <div class="table-responsive">
-                                <div id="table-1_wrapper"
-                                    class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                            <div class="table-responsive">
+                                <div id="table-1_wrapper" class="container-fluid dt-bootstrap4 no-footer">
 
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <table class="table table-striped dataTable no-footer" id="table-1">
                                                 <thead>
                                                     <tr role="row">
-                                                        <th>Banner</th>
-                                                        <th>Type</th>
-                                                        <th>Title</th>
-                                                        <th>price</th>
-                                                        <th>button url</th>
-                                                        <th>serial</th>
+                                                        <th>name</th>
+                                                        <th>slug</th>
+                                                        <th>icon</th>
                                                         <th>status</th>
                                                         <th>action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($sliders as $slider)
+                                                    @foreach ($categories as $category)
                                                         <tr>
-                                                            <td style="max-width: 100px;">
-                                                                <img class="w-100" src="{{ asset($slider->banner) }}">
-                                                            </td>
-                                                            <td>{{ $slider->type }}</td>
-                                                            <td>{{ $slider->title }}</td>
-                                                            <td>{{ $slider->starting_price }}</td>
+                                                            <td>{{ $category->name }}</td>
+                                                            <td>{{ $category->slug }}</td>
                                                             <td>
-                                                                <a target="_blank" href="{{ $slider->btn_url }}">
-                                                                    {{ $slider->btn_url }}
-                                                                </a>
+                                                                <i style="font-size: 20px;"
+                                                                    class="{{ $category->icon }}"></i>
                                                             </td>
-                                                            <td>{{ $slider->serial }}</td>
                                                             <td>
-                                                                <div
-                                                                    class="badge {{ $slider->status ? 'badge-success' : 'badge-danger' }}">
-                                                                    {{ $slider->status ? 'active' : 'inactive' }}
-                                                                </div>
+                                                                <label class="custom-switch mt-2">
+                                                                    <input @checked(old('status', $category->status)) type="checkbox"
+                                                                        name="status" class="custom-switch-input">
+                                                                    <span class="custom-switch-indicator"></span>
+                                                                </label>
                                                             </td>
                                                             <td class="d-flex">
-                                                                <a href="{{ route('admin.slider.edit', $slider->id) }}"
+                                                                <a href="{{ route('admin.category.edit', $category->id) }}"
                                                                     class="btn btn-primary mr-1">Edit</a>
 
-                                                                <a href="{{ route('admin.slider.destroy', $slider->id) }}"
+                                                                <a href="{{ route('admin.category.destroy', $category->id) }}"
                                                                     class="delete-item btn btn-danger">
                                                                     delete
                                                                 </a>
@@ -88,9 +79,9 @@
                                             </table>
                                         </div>
                                     </div>
-                                    {{ $sliders->links() }}
+                                    {{ $categories->links() }}
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
