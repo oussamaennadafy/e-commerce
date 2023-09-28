@@ -27,10 +27,12 @@
                         <div class="card-body">
                             <form action="{{ route('admin.category.store') }}" method="post">
                                 @csrf
-                                <button class="btn btn-secondary" role="iconpicker"></button>
                                 <div class="form-group">
                                     <label>Icon</label>
-                                    <input value="{{ old('banner') }}" name="icon" type="file" class="form-control">
+                                    <div>
+                                        <button name="icon" class="btn btn-primary" data-selected-class="btn-danger"
+                                            data-unselected-class="btn-info" role="iconpicker"></button>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>name</label>
