@@ -18,5 +18,8 @@ Route::post('profile/update/password', [ProfileController::class, 'updatePasswor
 // Slider route
 Route::resource('slider', SliderController::class);
 
+// update sttaus
+Route::patch('category/{id}/update-status', [CategoryController::class, 'updateStatus'])->name('category.updateStatus');
+
 // Category route
 Route::resource('category', CategoryController::class);

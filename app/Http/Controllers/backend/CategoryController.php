@@ -108,4 +108,17 @@ class CategoryController extends Controller
 
         return response(["status" => "success", "message" => "Category deleted successfully"]);
     }
+
+    public function updateStatus(Request $request, string $id)
+    {
+        $status = $request->json()->all()['status'];
+
+        $category = Category::findOrFail($id);
+
+        $category->status = $status;
+
+        $category->save();
+
+        return response(["status" => "success", "message" => "updated successfully"]);
+    }
 }

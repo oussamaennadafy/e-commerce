@@ -59,7 +59,8 @@
                                                             <td>
                                                                 <label class="custom-switch mt-2">
                                                                     <input @checked(old('status', $category->status)) type="checkbox"
-                                                                        name="status" class="custom-switch-input">
+                                                                        name="status" data-id="{{ $category->id }}"
+                                                                        class="custom-switch-input change-status">
                                                                     <span class="custom-switch-indicator"></span>
                                                                 </label>
                                                             </td>
@@ -89,3 +90,41 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        document.querySelectorAll('.change-status').forEach(function(el) {
+            el.addEventListener('change', function(e) {
+                const status = this.checked;
+                const id = this.getAttribute('data-id');
+                fetch(`${window.location.href}/${id}/update-status`, {
+                        method: "PATCH",
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                        },
+                        body: JSON.stringify({
+                            status
+                        })
+
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "success") {
+                            toastr.success(data.message)
+                            // Swal.fire(
+                            //     'updated',
+                            //     data.message,
+                            //     'success'
+                            // )
+                        } else if (data.status === "error") {
+                            Swal.fire(
+                                "can't delete",
+                                data.message,
+                                'error'
+                            )
+                        }
+                    })
+            })
+        })
+    </script>
+@endpush
