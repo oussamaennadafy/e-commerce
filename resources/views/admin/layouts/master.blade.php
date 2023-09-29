@@ -105,7 +105,6 @@
         document.querySelectorAll('.delete-item').forEach((el) => {
             el.addEventListener('click', function(event) {
                 event.preventDefault();
-
                 //
                 Swal.fire({
                     title: 'Are you sure?',

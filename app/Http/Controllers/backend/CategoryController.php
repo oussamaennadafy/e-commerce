@@ -106,9 +106,12 @@ class CategoryController extends Controller
         //
         Category::findOrFail($id)->delete();
 
-        return response(["status" => "success", "message" => "Category deleted successfully"]);
+        return response(["status" => "success", "message" => "deleted successfully"]);
     }
 
+    /**
+     * update the status of a category.
+     */
     public function updateStatus(Request $request, string $id)
     {
         $status = $request->json()->all()['status'];
