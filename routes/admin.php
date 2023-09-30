@@ -23,16 +23,17 @@ Route::resource('slider', SliderController::class);
 //---------------
 
 // Category routes
-Route::patch('category/{id}/update-status', [CategoryController::class, 'updateStatus'])->name('category.updateStatus');
+Route::patch('category/update-status', [CategoryController::class, 'updateStatus'])->name('category.updateStatus');
 Route::resource('category', CategoryController::class);
 //---------------
 
 // sub Category routes
-Route::patch('sub-category/{id}/update-status', [SubCategoryController::class, 'updateStatus'])->name('sub-category.updateStatus');
+Route::post('getSubCategories', [SubCategoryController::class, 'getSubCategories'])->name('getSubCategories');
+Route::patch('sub-category/update-status', [SubCategoryController::class, 'updateStatus'])->name('sub-category.updateStatus');
 Route::resource('sub-category', SubCategoryController::class);
 //---------------
 
 // child Category routes
-Route::patch('child-category/{id}/update-status', [ChildCategoryController::class, 'updateStatus'])->name('child-category.updateStatus');
+Route::patch('child-category/update-status', [ChildCategoryController::class, 'updateStatus'])->name('child-category.updateStatus');
 Route::resource('child-category', ChildCategoryController::class);
 //---------------

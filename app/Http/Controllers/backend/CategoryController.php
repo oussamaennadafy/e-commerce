@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Str;
 
@@ -104,6 +105,10 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         //
+        $childs_count = SubCategory::where("category_id", $id)->count();
+        if ($childs_count > 0) {
+            return response(["status" => "error", "message" => "this category contains sub categories, please delete all related sub categories first"]);
+        }
         Category::findOrFail($id)->delete();
 
         return response(["status" => "success", "message" => "deleted successfully"]);
@@ -112,9 +117,11 @@ class CategoryController extends Controller
     /**
      * update the status of a category.
      */
-    public function updateStatus(Request $request, string $id)
+    public function updateStatus(Request $request)
     {
         $status = $request->json()->all()['status'];
+
+        $id = $request->json()->all()['id'];
 
         $category = Category::findOrFail($id);
 

@@ -15,14 +15,14 @@
 
         <div class="section-body">
             <h2 class="section-title">Hi there!</h2>
-            <p class="section-lead">Here you can edit the sub category</p>
+            <p class="section-lead">Here you can edit the child category</p>
 
 
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>edit sub Category</h4>
+                            <h4>edit child Category</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.child-category.update', $childCategory->id) }}" method="POST">
@@ -30,9 +30,18 @@
                                 @method('PATCH')
                                 <div class="form-group">
                                     <label for="Category">Category</label>
-                                    <select name="subCategory" id="Category" class="form-control">
+                                    <select name="Category" id="Category" class="form-control">
+                                        @foreach ($categories as $category)
+                                            <option @selected($childCategory->subCategory->category->id === $category->id) value="{{ $category->id }}">
+                                                {{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subCategory">sub Category</label>
+                                    <select name="subCategory" id="subCategory" class="form-control">
                                         @foreach ($sub_categories as $sub_category)
-                                            <option @selected($sub_category->id === $childCategory->subCategory_id) value="{{ $sub_category->id }}">
+                                            <option @selected($childCategory->subCategory_id === $sub_category->id) value="{{ $sub_category->id }}">
                                                 {{ $sub_category->name }}</option>
                                         @endforeach
                                     </select>
@@ -60,3 +69,37 @@
         </div>
     </section>
 @endsection
+
+
+@push('scripts')
+    <script>
+        const categorySelect = document.getElementById('Category');
+        categorySelect.addEventListener('change', function(e) {
+            const subCategorySelect = document.getElementById('subCategory');
+            const category = this.value;
+
+            subCategorySelect.disabled = true;
+
+            // send http request
+            fetch("{{ route('admin.getSubCategories') }}", {
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                    },
+                    body: JSON.stringify({
+                        category
+                    })
+                })
+                .then(res => res.json())
+                .then(subCategories => {
+                    let options = "";
+                    subCategories.forEach(element => {
+                        options += `<option value="${element.id}">${element.name}</option>`
+                    });
+                    subCategorySelect.innerHTML = options
+                })
+                .catch(err => console.log(err))
+                .finally(() => subCategorySelect.disabled = false)
+        })
+    </script>
+@endpush

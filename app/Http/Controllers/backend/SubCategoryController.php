@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ChildCategory;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Str;
@@ -108,17 +109,23 @@ class SubCategoryController extends Controller
     public function destroy(string $id)
     {
         //
-        SubCategory::findOrFail($id)->delete();
+        $childs_count = ChildCategory::where("subCategory_id", $id)->count();
 
+        if ($childs_count > 0) {
+            return response(["status" => "error", "message" => "this sub category contains child categories, please delete all related child categories first"]);
+        }
+        SubCategory::findOrFail($id)->delete();
         return response(["status" => "success", "message" => "deleted successfully"]);
     }
 
     /**
      * update the status of a sub category.
      */
-    public function updateStatus(Request $request, string $id)
+    public function updateStatus(Request $request)
     {
         $status = $request->json()->all()['status'];
+
+        $id = $request->json()->all()['id'];
 
         $category = SubCategory::findOrFail($id);
 
@@ -127,5 +134,17 @@ class SubCategoryController extends Controller
         $category->save();
 
         return response(["status" => "success", "message" => "updated successfully"]);
+    }
+
+
+    public function getSubCategories(Request $request)
+    {
+        $category_id = $request->json()->all()['category'];
+        if ($category_id !== "") {
+            $sub_categories = SubCategory::select("id", "name")->where('category_id', $category_id)->get();
+        } else {
+            $sub_categories = SubCategory::select("id", "name")->get();
+        }
+        return response($sub_categories);
     }
 }

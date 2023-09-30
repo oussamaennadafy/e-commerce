@@ -28,6 +28,15 @@
                             <form action="{{ route('admin.child-category.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
+                                    <label for="Category">Category</label>
+                                    <select name="Category" id="Category" class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="subCategory">sub Category</label>
                                     <select name="subCategory" id="subCategory" class="form-control">
                                         <option value="">Select</option>
@@ -56,3 +65,37 @@
         </div>
     </section>
 @endsection
+
+
+@push('scripts')
+    <script>
+        const categorySelect = document.getElementById('Category');
+        categorySelect.addEventListener('change', function(e) {
+            const subCategorySelect = document.getElementById('subCategory');
+            const category = this.value;
+
+            subCategorySelect.disabled = true;
+
+            // send http request
+            fetch("{{ route('admin.getSubCategories') }}", {
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                    },
+                    body: JSON.stringify({
+                        category
+                    })
+                })
+                .then(res => res.json())
+                .then(subCategories => {
+                    let options = "";
+                    subCategories.forEach(element => {
+                        options += `<option value="${element.id}">${element.name}</option>`
+                    });
+                    subCategorySelect.innerHTML = options
+                })
+                .catch(err => console.log(err))
+                .finally(() => subCategorySelect.disabled = false)
+        })
+    </script>
+@endpush

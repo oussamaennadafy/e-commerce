@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->string('slug');
             $table->boolean('status');
             $table->timestamps();
+
+            $table->foreign('category_id')
+                ->references('id')->on('categories')->onDelete("restrict");
         });
     }
 

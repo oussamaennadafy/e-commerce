@@ -42,6 +42,7 @@
                                                     <tr role="row">
                                                         <th>name</th>
                                                         <th>slug</th>
+                                                        <th>category</th>
                                                         <th>sub category</th>
                                                         <th>status</th>
                                                         <th>action</th>
@@ -52,6 +53,7 @@
                                                         <tr>
                                                             <td>{{ $child_category->name }}</td>
                                                             <td>{{ $child_category->slug }}</td>
+                                                            <td>{{ $child_category->subCategory->category->name }}</td>
                                                             <td>{{ $child_category->subCategory->name }}</td>
                                                             <td>
                                                                 <label class="custom-switch mt-2">
@@ -94,13 +96,14 @@
             el.addEventListener('change', function(e) {
                 const status = this.checked;
                 const id = this.getAttribute('data-id');
-                fetch(`${window.location.href}/${id}/update-status`, {
+                fetch("{{ route('admin.child-category.updateStatus') }}", {
                         method: "PATCH",
                         headers: {
                             'X-CSRF-TOKEN': "{{ csrf_token() }}",
                         },
                         body: JSON.stringify({
-                            status
+                            status,
+                            id
                         })
                     })
                     .then(response => response.json())

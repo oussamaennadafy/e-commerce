@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -26,8 +27,9 @@ class ChildCategoryController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
         $sub_categories = SubCategory::all();
-        return view('admin.child-category.create', compact("sub_categories"));
+        return view('admin.child-category.create', compact("sub_categories", "categories"));
     }
 
     /**
@@ -70,10 +72,12 @@ class ChildCategoryController extends Controller
     public function edit(string $id)
     {
         //
+        $categories = Category::all();
         $childCategory = ChildCategory::findOrFail($id);
-        $sub_categories = SubCategory::all();
+        $sub_categories = SubCategory::where("category_id", $childCategory->subCategory->category->id)->get();
 
-        return view("admin.child-category.edit", compact("childCategory", "sub_categories"));
+
+        return view("admin.child-category.edit", compact("childCategory", "sub_categories", "categories"));
     }
 
     /**
@@ -117,9 +121,11 @@ class ChildCategoryController extends Controller
     /**
      * update the status of a sub category.
      */
-    public function updateStatus(Request $request, string $id)
+    public function updateStatus(Request $request)
     {
         $status = $request->json()->all()['status'];
+
+        $id = $request->json()->all()['id'];
 
         $category = ChildCategory::findOrFail($id);
 

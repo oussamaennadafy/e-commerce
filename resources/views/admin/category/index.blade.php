@@ -97,13 +97,14 @@
             el.addEventListener('change', function(e) {
                 const status = this.checked;
                 const id = this.getAttribute('data-id');
-                fetch(`${window.location.href}/${id}/update-status`, {
+                fetch("{{ route('admin.category.updateStatus') }}", {
                         method: "PATCH",
                         headers: {
                             'X-CSRF-TOKEN': "{{ csrf_token() }}",
                         },
                         body: JSON.stringify({
-                            status
+                            status,
+                            id
                         })
 
                     })
