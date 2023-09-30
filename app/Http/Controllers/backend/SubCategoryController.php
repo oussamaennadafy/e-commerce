@@ -109,7 +109,7 @@ class SubCategoryController extends Controller
     public function destroy(string $id)
     {
         //
-        $childs_count = ChildCategory::where("subCategory_id", $id)->count();
+        $childs_count = ChildCategory::where("sub_category_id", $id)->count();
 
         if ($childs_count > 0) {
             return response(["status" => "error", "message" => "this sub category contains child categories, please delete all related child categories first"]);

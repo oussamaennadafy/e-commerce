@@ -46,7 +46,7 @@ class ChildCategoryController extends Controller
 
         $childCategory = new ChildCategory();
 
-        $childCategory->subCategory_id = $request->subCategory;
+        $childCategory->sub_category_id = $request->subCategory;
         $childCategory->name = $request->name;
         $childCategory->slug = Str::slug($request->name);
         $childCategory->status = $request->status;
@@ -95,7 +95,7 @@ class ChildCategoryController extends Controller
 
         $childCategory = ChildCategory::findOrFail($id);
 
-        $childCategory->subCategory_id = $request->subCategory;
+        $childCategory->sub_category_id = $request->subCategory;
         $childCategory->name = $request->name;
         $childCategory->slug = Str::slug($request->name);
         $childCategory->status = $request->status;

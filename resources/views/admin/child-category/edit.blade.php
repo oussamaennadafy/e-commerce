@@ -41,7 +41,7 @@
                                     <label for="subCategory">sub Category</label>
                                     <select name="subCategory" id="subCategory" class="form-control">
                                         @foreach ($sub_categories as $sub_category)
-                                            <option @selected($childCategory->subCategory_id === $sub_category->id) value="{{ $sub_category->id }}">
+                                            <option @selected($childCategory->sub_category_id === $sub_category->id) value="{{ $sub_category->id }}">
                                                 {{ $sub_category->name }}</option>
                                         @endforeach
                                     </select>
