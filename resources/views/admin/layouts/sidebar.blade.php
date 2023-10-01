@@ -8,7 +8,7 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="dropdown active">
+            <li class="dropdown {{ setActive(['admin.dashboard']) }}">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link"><i
                         class="fas fa-fire"></i><span>Dashboard</span></a>
                 {{-- <ul class="dropdown-menu">
@@ -32,6 +32,16 @@
                             href="{{ route('admin.child-category.index') }}">Child Category</a></li>
                 </ul>
             </li>
+            <li class="dropdown {{ setActive(['admin.brand.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Manage products</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActive(['admin.brand.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.brand.index') }}">Brands</a></li>
+                </ul>
+            </li>
             <li class="dropdown {{ setActive(['admin.slider.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
@@ -42,20 +52,11 @@
                             href="{{ route('admin.slider.index') }}">Slider</a></li>
                 </ul>
             </li>
-            {{-- <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Layout</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-                </ul>
-            </li> --}}
-            {{-- <li>
+            <li>
                 <a class="nav-link" href="blank.html"><i class="far fa-square"></i>
                     <span>Blank Page</span>
                 </a>
-            </li> --}}
+            </li>
         </ul>
     </aside>
 </div>

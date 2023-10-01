@@ -5,26 +5,26 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Category</h1>
-            <div class="section-header-breadcrumb">
+            <h1>Brand</h1>
+            {{-- <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">Components</a></div>
                 <div class="breadcrumb-item">Table</div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="section-body">
             <h2 class="section-title">Hi there!</h2>
-            <p class="section-lead">here is all categories that are available for the client</p>
+            <p class="section-lead">here is all brands that are available in the store</p>
 
 
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Categories</h4>
+                            <h4>Brands</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.category.create') }}"
+                                <a href="{{ route('admin.brand.create') }}"
                                     class="btn btn-primary d-flex align-items-center">
                                     <i class="fas fa-plus mr-2"></i>
                                     <span class="d-inline-block">create New</span>
@@ -48,27 +48,26 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($categories as $category)
+                                                    @foreach ($brands as $brand)
                                                         <tr>
-                                                            <td>{{ $category->name }}</td>
-                                                            <td>{{ $category->slug }}</td>
+                                                            <td>{{ $brand->name }}</td>
+                                                            <td>{{ $brand->slug }}</td>
                                                             <td>
-                                                                <i style="font-size: 20px;"
-                                                                    class="{{ $category->icon }}"></i>
+                                                                <i style="font-size: 20px;" class="{{ $brand->icon }}"></i>
                                                             </td>
                                                             <td>
                                                                 <label class="custom-switch mt-2">
-                                                                    <input @checked(old('status', $category->status)) type="checkbox"
-                                                                        name="status" data-id="{{ $category->id }}"
+                                                                    <input @checked(old('status', $brand->status)) type="checkbox"
+                                                                        name="status" data-id="{{ $brand->id }}"
                                                                         class="custom-switch-input change-status">
                                                                     <span class="custom-switch-indicator"></span>
                                                                 </label>
                                                             </td>
                                                             <td class="d-flex">
-                                                                <a href="{{ route('admin.category.edit', $category->id) }}"
+                                                                <a href="{{ route('admin.brand.edit', $brand->id) }}"
                                                                     class="btn btn-primary mr-1">Edit</a>
 
-                                                                <a href="{{ route('admin.category.destroy', $category->id) }}"
+                                                                <a href="{{ route('admin.brand.destroy', $brand->id) }}"
                                                                     class="delete-item btn btn-danger">
                                                                     delete
                                                                 </a>
@@ -80,7 +79,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                    {{ $categories->links() }}
+                                    {{ $brands->links() }}
                                 </div>
                             </div>
                         </div>
@@ -97,7 +96,7 @@
             el.addEventListener('change', function(e) {
                 const status = this.checked;
                 const id = this.getAttribute('data-id');
-                fetch("{{ route('admin.category.updateStatus') }}", {
+                fetch("{{ route('admin.brand.updateStatus') }}", {
                         method: "PATCH",
                         headers: {
                             'X-CSRF-TOKEN': "{{ csrf_token() }}",
