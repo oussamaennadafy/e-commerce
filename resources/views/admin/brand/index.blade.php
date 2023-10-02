@@ -40,9 +40,10 @@
                                             <table class="table table-striped dataTable no-footer" id="table-1">
                                                 <thead>
                                                     <tr role="row">
+                                                        <th>logo</th>
                                                         <th>name</th>
                                                         <th>slug</th>
-                                                        <th>icon</th>
+                                                        <th>is featured</th>
                                                         <th>status</th>
                                                         <th>action</th>
                                                     </tr>
@@ -50,10 +51,17 @@
                                                 <tbody>
                                                     @foreach ($brands as $brand)
                                                         <tr>
+                                                            <td>
+                                                                <img height="50" src="{{ asset($brand->logo) }}"
+                                                                    alt="{{ $brand->name }} logo">
+                                                            </td>
                                                             <td>{{ $brand->name }}</td>
                                                             <td>{{ $brand->slug }}</td>
                                                             <td>
-                                                                <i style="font-size: 20px;" class="{{ $brand->icon }}"></i>
+                                                                <div
+                                                                    class="badge badge-{{ $brand->is_featured ? 'success' : 'warning' }}">
+                                                                    {{ $brand->is_featured ? 'yes' : 'no' }}
+                                                                </div>
                                                             </td>
                                                             <td>
                                                                 <label class="custom-switch mt-2">

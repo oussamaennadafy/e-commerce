@@ -30,7 +30,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label>logo</label>
-                                    <input value="{{ old('logo') }}" name="logo" type="file" class="form-control">
+                                    <input name="logo" type="file" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>name</label>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\AdminController;
+use App\Http\Controllers\backend\AdminVendorProfileController;
 use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ChildCategoryController;
@@ -43,4 +44,9 @@ Route::resource('child-category', ChildCategoryController::class);
 // brand routes
 Route::patch('brand/update-status', [BrandController::class, 'updateStatus'])->name('brand.updateStatus');
 Route::resource('brand', BrandController::class);
+//---------------
+
+
+// vendor profile routes
+Route::resource('vendor-profile', AdminVendorProfileController::class);
 //---------------

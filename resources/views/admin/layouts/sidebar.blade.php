@@ -32,6 +32,7 @@
                             href="{{ route('admin.child-category.index') }}">Child Category</a></li>
                 </ul>
             </li>
+
             <li class="dropdown {{ setActive(['admin.brand.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
@@ -42,6 +43,18 @@
                             href="{{ route('admin.brand.index') }}">Brands</a></li>
                 </ul>
             </li>
+
+            <li class="dropdown {{ setActive(['admin.vendor-profile.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-columns"></i>
+                    <span>Ecommerce</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.vendor-profile.index') }}">Vendor profile</a></li>
+                </ul>
+            </li>
+
             <li class="dropdown {{ setActive(['admin.slider.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-columns"></i>
