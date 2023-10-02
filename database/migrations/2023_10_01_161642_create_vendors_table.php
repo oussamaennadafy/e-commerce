@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('address');
             $table->text('description');
             $table->text('facebook_link')->nullable();
-            $table->text('twiter_link')->nullable();
+            $table->text('twitter_link')->nullable();
             $table->text('instagram_link')->nullable();
             $table->integer('user_id');
             $table->timestamps();

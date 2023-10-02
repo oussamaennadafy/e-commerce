@@ -30,39 +30,49 @@
                                 method="POST">
                                 @csrf
                                 <div class="form-group">
+                                    <label>banner preview</label>
+                                    <br>
+                                    <img width="400" src="{{ asset($profile->banner) }}" alt="">
+                                </div>
+                                <div class="form-group">
                                     <label>Banner</label>
                                     <input value="{{ old('banner') }}" name="banner" type="file" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>phone</label>
-                                    <input value="{{ old('phone') }}" name="phone" type="tel" class="form-control">
+                                    <input value="{{ old('phone', $profile->phone) }}" name="phone" type="tel"
+                                        class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>email</label>
-                                    <input value="{{ old('email') }}" name="email" type="email" class="form-control">
+                                    <input value="{{ old('email', $profile->email) }}" name="email" type="email"
+                                        class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>address</label>
-                                    <input value="{{ old('address') }}" name="address" type="text" class="form-control">
+                                    <input value="{{ old('address', $profile->address) }}" name="address" type="text"
+                                        class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>description</label>
-                                    <textarea value="{{ old('description') }}" name="description" class="summernote"></textarea>
+                                    <textarea name="description" class="summernote">
+                                        {{ old('description', $profile->description) }}
+                                    </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>facebook url</label>
-                                    <input value="{{ old('facebook_link') }}" name="facebook_link" type="url"
-                                        class="form-control">
+                                    <input value="{{ old('facebook_link', $profile->facebook_link) }}" name="facebook_link"
+                                        type="url" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>twitter url</label>
-                                    <input value="{{ old('twitter_link') }}" name="twitter_link" type="url"
-                                        class="form-control">
+                                    <input value="{{ old('twitter_link', $profile->twitter_link) }}" name="twitter_link"
+                                        type="url" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>instagram url</label>
-                                    <input value="{{ old('instagram_link') }}" name="instagram_link" type="url"
-                                        class="form-control">
+                                    <input value="{{ old('instagram_link', $profile->instagram_link) }}"
+                                        name="instagram_link" type="url" class="form-control">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </form>
